@@ -27,6 +27,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://192.168.1.10',  # Replace with your actual IP or domain
     'http://example.com',
     "http://localhost:8080",
+    "https://projectonebackend-production.up.railway.app"
 ]
 
 
