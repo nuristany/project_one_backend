@@ -21,11 +21,6 @@ import os
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split() or []
 CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split() or []
 
-
-
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
