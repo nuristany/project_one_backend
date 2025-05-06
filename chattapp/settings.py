@@ -17,18 +17,18 @@ DEBUG = os.getenv("DJANGO_DEBUG") == "True"
 
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(" ")
+CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(" ")
 
-
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost',
-    'http://127.0.0.1',
-    'http://web',
-    'http://0.0.0.0',
-    'http://192.168.1.10',  # Replace with your actual IP or domain
-    'http://example.com',
-    "http://localhost:8080",
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://localhost',
+#     'http://127.0.0.1',
+#     'http://web',
+#     'http://0.0.0.0',
+#     'http://192.168.1.10',  # Replace with your actual IP or domain
+#     'http://example.com',
+#     "http://localhost:8080",
     
-]
+# ]
 
 
 
