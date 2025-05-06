@@ -16,19 +16,12 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DJANGO_DEBUG") == "True"
 
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(" ")
-CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(" ")
+import os
 
-# CSRF_TRUSTED_ORIGINS = [
-#     'http://localhost',
-#     'http://127.0.0.1',
-#     'http://web',
-#     'http://0.0.0.0',
-#     'http://192.168.1.10',  # Replace with your actual IP or domain
-#     'http://example.com',
-#     "http://localhost:8080",
-    
-# ]
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split() or []
+CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split() or []
+
+
 
 
 
@@ -148,3 +141,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
+
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://localhost',
+#     'http://127.0.0.1',
+#     'http://web',
+#     'http://0.0.0.0',
+#     'http://192.168.1.10',  # Replace with your actual IP or domain
+#     'http://example.com',
+#     "http://localhost:8080",
+    
+# ]
