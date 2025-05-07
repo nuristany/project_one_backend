@@ -14,6 +14,7 @@ def send_activation_email(subject, message, recipient_email, email_body):
             html_message=email_body
         )
 
+        print("Email sent successfully")
         return "Email sent successfully"
     except Exception as e:
         return f"failed to send email: {str(e)}"
