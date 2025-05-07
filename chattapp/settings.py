@@ -161,3 +161,5 @@ AUTH_USER_MODEL = 'accounts.UserAccount'
 #     "http://localhost:8080",
     
 # ]
+
+CELERY_BROKER_URL = 'redis://redis:6379/1'

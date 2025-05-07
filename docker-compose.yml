@@ -13,6 +13,22 @@ services:
     expose:
       - "8000"
 
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    command: celery -A chattapp worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - web
+      - redis
+    env_file:
+      - .env
+
   db:
     image: postgres:13
     volumes:
