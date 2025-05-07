@@ -13,23 +13,23 @@ class CustomUserCreateSerializer(UserCreateSerializer):
         model = UserAccount
         fields = ('id', 'email', 'first_name', 'last_name', 'password')
 
-        def create(self, validated_data):
-            user = super().create(validated_data)
-            user.is_active = False
-            user.save()
-        
-            uid = urlsafe_base64_encode(force_bytes(user.pk))
-            token = account_activation_token.make_toke(user)
-            activation_link = f'https://django-chat.netlify.app/{uid}/{token}'
+    def create(self, validated_data):
+        user = super().create(validated_data)
+        user.is_active = False
+        user.save()
+    
+        uid = urlsafe_base64_encode(force_bytes(user.pk))
+        token = account_activation_token.make_token(user)
+        activation_link = f'https://django-chat.netlify.app/{uid}/{token}'
 
-            html_message = render_to_string('activation_email.html', {
-                'first_name': user.first_name,
-                'activation_link': activation_link,
-            })
+        html_message = render_to_string('activation_email.html', {
+            'first_name': user.first_name,
+            'activation_link': activation_link,
+        })
 
-            email_body = f"Hi {user.first_name}, \n\nPlease activate your account:\n{activation_link}"
-            subject = "Activation Email" 
+        email_body = f"Hi {user.first_name}, \n\nPlease activate your account:\n{activation_link}"
+        subject = "Activation Email" 
 
-            send_activation_email.delay(subject, email_body, user.email, html_message)
+        send_activation_email.delay(subject, email_body, user.email, html_message)
 
-            return user
+        return user
