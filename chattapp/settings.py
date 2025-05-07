@@ -162,8 +162,10 @@ AUTH_USER_MODEL = 'accounts.UserAccount'
     
 # ]
 
-CELERY_BROKER_URL = 'redis://redis:6379/1'
-
+CELERY_BROKER_URL = os.environ.get('REDIS_URL')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
 EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST = config('EMAIL_HOST', default='localhost')
 EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
