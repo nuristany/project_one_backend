@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.utils import timezone
 from datetime import timedelta
 from .models import UserAccount
-
+@shared_task
 def send_activation_email(subject, message, recipient_email, email_body):
     try:
         send_mail(
